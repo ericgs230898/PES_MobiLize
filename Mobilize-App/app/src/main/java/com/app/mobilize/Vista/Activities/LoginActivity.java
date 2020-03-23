@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface.V
             Toast.makeText(this, "Por favor, introduce un email válido.", Toast.LENGTH_SHORT).show();
             email.setError("Email incorrecto.");
         }else if (!isValidPassword()){
-            Toast.makeText(this, "Por favor, introduce una contraseña válida. Debe contener entre 6 y 10 caracteres alfanuméricos", Toast.LENGTH_SHORT).show();
+            password.setError("Contraseña incorrecta. Por favor, introduce una contraseña válida. Debe contener entre 6 y 10 caracteres alfanuméricos.");
         }else{
             presenter.toLogin(email.getText().toString().trim(), password.getText().toString().trim());
         }
@@ -94,12 +94,7 @@ public class LoginActivity extends AppCompatActivity implements LoginInterface.V
 
     @Override
     public boolean isValidPassword() {
-        if(TextUtils.isEmpty(password.getText().toString()) && password.getText().toString().length() < 6 || password.getText().toString().length() > 10){
-            Toast.makeText(this, "Por favor, introduce una contraseña válida. Debe contener entre 6 y 10 caracteres alfanuméricos", Toast.LENGTH_SHORT).show();
-            password.setError("Contraseña incorrecta.");
-            return false;
-        }
-        else return true;
+        return (TextUtils.isEmpty(password.getText().toString()) && password.getText().toString().length() < 6 || password.getText().toString().length() > 10);
     }
 
     @Override
